@@ -8,7 +8,8 @@ const globalStyle = css`
   }
   body {
     font-family: Noto sans-serif, Noto Sans KR;
-    /* background: #000; */
+    background: #000;
+    color: #fff;
   }
 `;
 

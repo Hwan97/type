@@ -1,5 +1,7 @@
 import React, { useMemo, useCallback } from 'react';
 import styled from 'styled-components';
+import { AiOutlineCheck } from 'react-icons/ai';
+import { BsFillTrashFill } from 'react-icons/bs';
 import palette from '../styles/palette';
 import { TodoType } from '../types/todo';
 
@@ -31,6 +33,32 @@ const Container = styled.div`
         .todo-text {
           margin-left: 12px;
           font-size: 16px;
+        }
+      }
+      .todo-right-side {
+        display: flex;
+        margin-right: 12px;
+        svg {
+          &:first-child {
+            margin-right: 16px;
+          }
+        }
+        .todo-trash-can {
+          width: 16px;
+          path {
+            fill: ${palette.deep_red};
+          }
+        }
+        .todo-check-mark {
+          fill: ${palette.deep_green};
+        }
+        .todo-button {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          border: 1px solid ${palette.gray};
+          background-color: transparent;
+          outline: none;
         }
       }
     }
@@ -147,7 +175,6 @@ const TodoList: React.FC<Iprops> = ({ todos }) => {
   type ObjectIndexType = {
     [key: string]: number | undefined;
   };
-
   const TodoColorNums2 = useMemo(() => {
     const colors: ObjectIndexType = {};
     todos.forEach((todo) => {
@@ -189,6 +216,27 @@ const TodoList: React.FC<Iprops> = ({ todos }) => {
                 >
                   {todo.text}
                 </p>
+              </div>
+              <div className="todo-right-side">
+                {todo.checked && (
+                  <>
+                    <BsFillTrashFill
+                      className="todo-trash-can"
+                      onClick={() => {}}
+                    />
+                    <AiOutlineCheck
+                      className="todo-check-mark"
+                      onClick={() => {}}
+                    />
+                  </>
+                )}
+                {!todo.checked && (
+                  <button
+                    type="button"
+                    className="todo-button"
+                    onClick={() => {}}
+                  />
+                )}
               </div>
             </li>
           ))}
